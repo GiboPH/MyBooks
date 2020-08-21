@@ -69,7 +69,7 @@
 			</div>
 		<div class="w3l_search">
 			<form action="#" method="post">
-				<input type="search" name="Search" placeholder="Search for a Product..." required="">
+				<input type="search" name="Search" placeholder="Search for a Book..." required="">
 				<button type="submit" class="btn btn-default search" aria-label="Left Align">
 					<i class="fa fa-search" aria-hidden="true"> </i>
 				</button>

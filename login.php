@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Online Book Store | Sign Up Form :: w3layouts</title>
-<!-- for-mobile-apps -->
+<title>Super Market an Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Login :: w3layouts</title>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Super Market Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- //for-mobile-apps -->
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-<!-- font-awesome icons -->
+
 <link href="css/font-awesome.css" rel="stylesheet"> 
-<!-- //font-awesome icons -->
-<!-- js -->
 <script src="js/jquery-1.11.1.min.js"></script>
 <!-- //js -->
 <link href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic' rel='stylesheet' type='text/css'>
@@ -37,7 +36,7 @@
 	<div class="agileits_header">
 		<div class="container">
 			<div class="w3l_offers">
-				<p>SALE UP TO 30% OFF.<a href="books.php">SHOP NOW</a></p>
+				<p>SALE UP TO 30% OFF.. <a href="books.php">SHOP NOW</a></p>
 			</div>
 			<div class="agile-login">
 				<ul>
@@ -47,7 +46,6 @@
 					
 				</ul>
 			</div>
-
 			<form action="#" method="post" class="last"> 
 					<input type="hidden" name="cmd" value="_cart">
 					<input type="hidden" name="display" value="1">
@@ -114,8 +112,11 @@
 														<li><a href="books.php">Algebra</a></li>
 													</ul>
 												</div>	
+												
+											</div>
 										</ul>
 									</li>
+						
 									<li><a href="offers.php">Offers</a></li>
 									<li><a href="contact.php">Contact</a></li>
 								</ul>
@@ -130,45 +131,31 @@
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
 				<li><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">Sign Up Form</li>
+				<li class="active">Login Page</li>
 			</ol>
 		</div>
 	</div>
 <!-- //breadcrumbs -->
-<!-- register -->
-	<div class="register">
+<!-- login -->
+	<div class="login">
 		<div class="container">
-			<h2>Sign Up Now!</h2>
-			<div class="login-form-grids">
-				<h5>profile information</h5>
-				<form action="#" method="post">
-					<input type="text" placeholder="First Name..." required=" " >
-					<input type="text" placeholder="Last Name..." required=" " >
-				</form>
-				<div class="register-check-box">
-					<div class="check">
-						<label class="checkbox"><input type="checkbox" name="checkbox"><i> </i>Subscribe to Newsletter</label>
-					</div>
-				</div>
-				<h6>Login information</h6>
-					<form action="#" method="post">
+			<h2>Login Form</h2>
+		
+			<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
+				<form>
 					<input type="email" placeholder="Email Address" required=" " >
 					<input type="password" placeholder="Password" required=" " >
-					<input type="password" placeholder="Password Confirmation" required=" " >
-					<div class="register-check-box">
-						<div class="check">
-							<label class="checkbox"><input type="checkbox" name="checkbox"><i> </i>I accept the terms and conditions</label>
-						</div>
+					<div class="forgot">
+						<a href="#">Forgot Password?</a>
 					</div>
-					<input type="submit" value="Register">
+					<input type="submit" value="Login">
 				</form>
 			</div>
-			<div class="register-home">
-				<a href="index.php">Home</a>
-			</div>
+			<h4>For New People</h4>
+			<p><a href="registered.php">Register Here</a> (Or) go back to <a href="index.php">Home<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></p>
 		</div>
 	</div>
-<!-- //register -->
+<!-- //login -->
 <!-- //footer -->
 <div class="footer">
 		<div class="container">
@@ -191,6 +178,7 @@
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="books.php">Special Products</a></li>
 					</ul>
 				</div>
+
 				<div class="col-md-3 w3_footer_grid">
 					<h3>Profile</h3>
 					<ul class="info"> 
@@ -206,6 +194,7 @@
 			</div>
 		</div>
 		
+
 		
 	</div>	
 	<div class="footer-botm">
