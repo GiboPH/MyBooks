@@ -1,3 +1,10 @@
+<?php
+	include_once "dbconnect.php";
+    error_reporting (E_ALL ^ E_NOTICE);
+    session_start();
+    ob_start();
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,7 +44,7 @@
 	<div class="agileits_header">
 		<div class="container">
 			<div class="w3l_offers">
-				<p>SALE UP TO 30% OFF.<a href="books.php">SHOP NOW</a></p>
+				<p>SALE UP TO 30% OFF. <a href="books.php">SHOP NOW</a></p>
 			</div>
 			<div class="agile-login">
 				<ul>
@@ -142,27 +149,64 @@
 			<div class="login-form-grids">
 				<h5>profile information</h5>
 				<form action="#" method="post">
-					<input type="text" placeholder="First Name..." required=" " >
-					<input type="text" placeholder="Last Name..." required=" " >
-				</form>
+					<input type="text" placeholder="First Name..." required=" " name="FirstName">
+					<input type="text" placeholder="Last Name..." required=" " name="LastName">
+				
 				<div class="register-check-box">
 					<div class="check">
 						<label class="checkbox"><input type="checkbox" name="checkbox"><i> </i>Subscribe to Newsletter</label>
 					</div>
 				</div>
 				<h6>Login information</h6>
-					<form action="#" method="post">
-					<input type="email" placeholder="Email Address" required=" " >
-					<input type="password" placeholder="Password" required=" " >
-					<input type="password" placeholder="Password Confirmation" required=" " >
+					<input type="email" placeholder="Email Address" required=" " name="email">
+					<input type="password" placeholder="Password" required=" " name="password">
+					<input type="password" placeholder="Password Confirmation" required=" " name="password-c">
 					<div class="register-check-box">
 						<div class="check">
 							<label class="checkbox"><input type="checkbox" name="checkbox"><i> </i>I accept the terms and conditions</label>
 						</div>
 					</div>
+
 					<input type="submit" value="Register">
 				</form>
 			</div>
+			<?php
+
+                 $Fname = mysqli_real_escape_string($conn, $_POST['FirstName']);
+                 $Lname = mysqli_real_escape_string($conn, $_POST['LastName']);
+                 $email = mysqli_real_escape_string($conn, $_POST['email']);
+                 $password = mysqli_real_escape_string($conn, $_POST['password']);
+                 $passwordC = mysqli_real_escape_string($conn, $_POST['password-c']);
+
+                 //function_alert($passwordC);
+
+                 if ($password != $passwordC) {
+                 	$msg = "Password should be match";
+                 	$css_class = "alert-danger";
+                 }
+                 else{
+                 	if (mysqli_connect_error()) {
+                 		die('Connect Error (' . mysqli_connect_errno(). ')'. mysqli_connect_errno());
+                 	}
+                 	else{
+                            $sql = "INSERT INTO users(First_Name, Last_Name, Email, Password) values ('$Fname', '$Lname', '$email', '$password')";
+                            if ($conn->query($sql) == TRUE) {
+                                function_alert("New record is inserted successfully");
+                                
+                                //header("Location: registered.php");
+                            }
+                            else{
+                                 function_alert("Error: ". $sql . "<br>" . $conn->error);
+                            }
+
+                            
+                            $conn->close();                 		
+                 	}
+                 }
+
+			?>
+
+
 			<div class="register-home">
 				<a href="index.php">Home</a>
 			</div>

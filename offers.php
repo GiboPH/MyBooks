@@ -37,7 +37,7 @@
 	<div class="agileits_header">
 		<div class="container">
 			<div class="w3l_offers">
-				<p>SALE UP TO 30%. <a href="books.php">SHOP NOW</a></p>
+				<p>SALE UP TO 30% OFF. <a href="books.php">SHOP NOW</a></p>
 			</div>
 			<div class="agile-login">
 				<ul>
