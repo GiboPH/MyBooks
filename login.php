@@ -4,11 +4,13 @@
     session_start();
     ob_start();
 
+    $query = "SELECT * FROM "
+
 ?>
 <!DOCTYPE html> 
 <html>
 <head>
-<title>Online Book Store | Login <?php $rown['email'] ?> </title>
+<title>Online Book Store | Login </title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -161,7 +163,37 @@
         </div>
     </div>
     <?php
-        // Login backend
+        if (isset($_POST['submit'])) {
+            if(!empty($_POST['email'] && !empty($_POST['password']))){
+
+
+                $user = mysqli_real_escape_string($conn, $_POST['email']);
+                $pass = mysqli_real_escape_string($conn, $_POST['password']);
+
+                $select = "SELECT * FROM users WHERE email = '$user' && password = '$pass'";
+
+                $query = mysqli_query($conn, $select);
+
+                if(mysqli_num_rows($query) > 0){
+                    if (mysqli_num_rows($query) == 1) {
+                        $rown = mysqli_fetch_assoc($query);
+                        $_SESSION['id']=$rown['User_ID'];
+
+                        header('location:index.php');
+
+                    }
+                    else{
+                        header('location:login.php');
+                    }
+                }
+                                
+
+
+            }
+            else{
+                function_alert('Invalid email or password');
+            }
+        }
     ?>
 
 <!-- //login -->
@@ -271,3 +303,8 @@
 
 </body>
 </html>
+
+<?php
+    ob_end_flush(); 
+
+?>
