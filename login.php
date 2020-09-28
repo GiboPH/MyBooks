@@ -1,7 +1,7 @@
 <?php
     include_once "dbconnect.php";
     error_reporting (E_ALL ^ E_NOTICE);
-    session_start();
+    //session_start();
     ob_start();
 
     $query = "SELECT * FROM "
@@ -149,7 +149,7 @@
             <h2>Login Form</h2>
         
             <div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
-                <form>
+                <form method="post" action="log_conn.php">
                     <input type="email" placeholder="Email Address" required=" " name="email">
                     <input type="password" placeholder="Password" required=" " name="password">
                     <div class="forgot">
@@ -162,40 +162,6 @@
             <p><a href="registered.php">Register Here</a> (Or) go back to <a href="index.php">Home<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></p>
         </div>
     </div>
-    <?php
-        if (isset($_POST['submit'])) {
-            if(!empty($_POST['email'] && !empty($_POST['password']))){
-
-
-                $user = mysqli_real_escape_string($conn, $_POST['email']);
-                $pass = mysqli_real_escape_string($conn, $_POST['password']);
-
-                $select = "SELECT * FROM users WHERE email = '$user' && password = '$pass'";
-
-                $query = mysqli_query($conn, $select);
-
-                if(mysqli_num_rows($query) > 0){
-                    if (mysqli_num_rows($query) == 1) {
-                        $rown = mysqli_fetch_assoc($query);
-                        $_SESSION['id']=$rown['User_ID'];
-
-                        header('location:index.php');
-
-                    }
-                    else{
-                        header('location:login.php');
-                    }
-                }
-                                
-
-
-            }
-            else{
-                function_alert('Invalid email or password');
-            }
-        }
-    ?>
-
 <!-- //login -->
 <!-- //footer -->
 <div class="footer">

@@ -148,7 +148,7 @@
 			<h2>Sign Up Now!</h2>
 			<div class="login-form-grids">
 				<h5>profile information</h5>
-				<form action="#" method="post">
+				<form action="signup_conn.php" method="post">
 					<input type="text" placeholder="First Name..." required=" " name="FirstName">
 					<input type="text" placeholder="Last Name..." required=" " name="LastName">
 				
@@ -170,41 +170,6 @@
 					<input type="submit" value="Register">
 				</form>
 			</div>
-			<?php
-
-                 $Fname = mysqli_real_escape_string($conn, $_POST['FirstName']);
-                 $Lname = mysqli_real_escape_string($conn, $_POST['LastName']);
-                 $email = mysqli_real_escape_string($conn, $_POST['email']);
-                 $password = mysqli_real_escape_string($conn, $_POST['password']);
-                 $passwordC = mysqli_real_escape_string($conn, $_POST['password-c']);
-
-                 //function_alert($passwordC);
-
-                 if ($password != $passwordC) {
-                 	$msg = "Password should be match";
-                 	$css_class = "alert-danger";
-                 }
-                 else{
-                 	if (mysqli_connect_error()) {
-                 		die('Connect Error (' . mysqli_connect_errno(). ')'. mysqli_connect_errno());
-                 	}
-                 	else{
-                            $sql = "INSERT INTO users(First_Name, Last_Name, Email, Password) values ('$Fname', '$Lname', '$email', '$password')";
-                            if ($conn->query($sql) == TRUE) {
-                                function_alert("New record is inserted successfully");
-                                
-                                //header("Location: registered.php");
-                            }
-                            else{
-                                 function_alert("Error: ". $sql . "<br>" . $conn->error);
-                            }
-
-                            
-                            $conn->close();                 		
-                 	}
-                 }
-
-			?>
 
 
 			<div class="register-home">
