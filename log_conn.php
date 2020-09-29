@@ -14,15 +14,17 @@
         if(mysqli_num_rows($result) == 1){
 
             $data = mysqli_fetch_assoc($result);
-
-            //phpAlert($get_name);
-            
-            phpAlert("Logged In!");
+            $_SESSION['id_user'] = $data['User_ID'];   
+            phpAlert("Welcome bubu");
 
             redirect("home.php");
         }
         else{
-            phpAlert("Incorrect Username/Password");
+            $msg = "Incorrect Username/Password";
+            $css_class = "alert-danger";        
+            $_SESSION['msg'] = $msg;
+            $_SESSION['css'] = $css_class;    
+            //phpAlert("Incorrect Username/Password");
             redirect("login.php");
         }
 

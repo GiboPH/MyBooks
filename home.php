@@ -1,9 +1,28 @@
+<?php
+	include_once "dbconnect.php";
+    error_reporting (E_ALL ^ E_NOTICE);
+    //session_start();
+    ob_start();
+
+    if(!isset($_SESSION['id_user'])){
+        redirect("login.php");
+    }    
+    else
+    {
+    	$id = $_SESSION['id_user'];
+    	$query = "SELECT * FROM users where User_ID='$id';";
+        $result = mysqli_query($conn, $query);
+        if (mysqli_num_rows($result) > 0) {
+           $data = mysqli_fetch_assoc($result);
+        }
+        $name = $data['First_Name'];   	
+?>
 
 
 <!DOCTYPE html>
 <html>
 <head>
-<title>Online Book Store | Home</title>
+<title>Welcome <?php echo $name . " " . $data['Last_Name'];?> | Home</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -43,8 +62,8 @@
 			</div>
 			<div class="agile-login">
 				<ul>
-					<li><a href="registered.php"> Create Account </a></li>
-					<li><a href="login.php">Login</a></li>
+					<li><a href="#"><?php echo $name;?></a></li>
+					<li><a href="logout_conn.php">Logout</a></li>
 					<li><a href="contact.php">Help</a></li>
 					
 				</ul>
@@ -1009,3 +1028,7 @@
 <!-- //main slider-banner --> 
 </body>
 </html>
+
+<?php
+	}
+?>

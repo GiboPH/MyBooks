@@ -4,7 +4,7 @@
     //session_start();
     ob_start();
 
-    $query = "SELECT * FROM "
+    
 
 ?>
 <!DOCTYPE html> 
@@ -36,6 +36,24 @@
     });
 </script>
 <!-- start-smoth-scrolling -->
+<style type="text/css">
+    .alert-danger{
+        color: #D8000C;
+        background-color: #FFBABA;
+        margin-top: 30px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    .alert-success{
+        color: #270;
+        background-color: #DFF2BF;
+        margin-top: 30px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+</style>
+
 </head>
     
 <body>
@@ -149,6 +167,20 @@
             <h2>Login Form</h2>
         
             <div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
+                             <?php  
+                                    $msg = $_SESSION['msg'];
+                                    $css_class = $_SESSION['css'];
+                                    if (!empty($msg)): 
+                              ?>
+                                    <div class="<?php echo $css_class;?>" style="text-align: center;">
+                                      <?php echo $msg;?>
+                                
+                              </div>
+                            <?php 
+                                    endif;
+                                    unset($_SESSION['msg']);
+                                    unset($_SESSION['css']); 
+                            ?>
                 <form method="post" action="log_conn.php">
                     <input type="email" placeholder="Email Address" required=" " name="email">
                     <input type="password" placeholder="Password" required=" " name="password">

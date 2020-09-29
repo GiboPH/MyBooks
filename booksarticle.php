@@ -1,16 +1,7 @@
-<?php
-
-	include_once "dbconnect.php";
-    error_reporting (E_ALL ^ E_NOTICE);
-    //session_start();
-    ob_start();
-
-
-?>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Online Book Store | Sign Up Form</title>
+<title>Online Book Store | Books</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -27,17 +18,6 @@
 <!-- //js -->
 <link href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic' rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-
-
-
-
-
-
-
-
-
-
-
 <!-- start-smoth-scrolling -->
 <script type="text/javascript" src="js/move-top.js"></script>
 <script type="text/javascript" src="js/easing.js"></script>
@@ -49,22 +29,6 @@
 		});
 	});
 </script>
-<style type="text/css">
-	.alert-danger{
-		color: #D8000C;
-  		background-color: #FFBABA;
-  		margin-top: 30px;
-  		padding: 10px;
-	}
-	.alert-success{
-		color: #270;
-    	background-color: #DFF2BF;
-    	margin-top: 30px;
-    	padding: 10px;
-	}
-
-</style>
-
 <!-- start-smoth-scrolling -->
 </head>
 	
@@ -83,12 +47,13 @@
 					
 				</ul>
 			</div>
-
 			<form action="#" method="post" class="last"> 
 					<input type="hidden" name="cmd" value="_cart">
 					<input type="hidden" name="display" value="1">
 					<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
 			</form>  
+
+
 			<div class="clearfix"> </div>
 		</div>
 	</div>
@@ -149,7 +114,9 @@
 														<li><a href="books.php">Literatures</a></li>
 														<li><a href="books.php">Algebra</a></li>
 													</ul>
-												</div>	
+												</div>		
+												
+											</div>
 										</ul>
 									</li>
 									<li><a href="offers.php">Offers</a></li>
@@ -166,60 +133,69 @@
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
 				<li><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">Sign Up Form</li>
+				<li class="active">Books</li>
+				<li class="active">Searching</li>
 			</ol>
 		</div>
 	</div>
-<!-- //breadcrumbs -->
-<!-- register -->
-	<div class="register">
+	<!-- Single Book -->
+	<div class="products">
 		<div class="container">
-			<h2>Sign Up Now!</h2>
-			<div class="login-form-grids">
-				<h5>profile information</h5>
-				<form action="signup_conn.php" method="post">
-					<input type="text" placeholder="First Name..." required=" " name="FirstName">
-					<input type="text" placeholder="Last Name..." required=" " name="LastName">
+			<div class="agileinfo_single">
 				
-				<div class="register-check-box">
-					<div class="check">
-						<label class="checkbox"><input type="checkbox" name="checkbox"><i> </i>Subscribe to Newsletter</label>
+				<div class="col-md-4 agileinfo_single_left">
+					<img id="example" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS-d4bGT9eqLQ1bZKNqmKGa7KmdCX_x3MfoGfJrNI9ShXlFIC0" alt=" " class="img-responsive">
+				</div>
+				<div class="col-md-8 agileinfo_single_right">
+				<h2>The C++ Programming Language Fourth</h2>
+					<div class="rating1">
+						<span class="starRating">
+							<input id="rating5" type="radio" name="rating" value="5">
+							<label for="rating5">5</label>
+							<input id="rating4" type="radio" name="rating" value="4">
+							<label for="rating4">4</label>
+							<input id="rating3" type="radio" name="rating" value="3" checked="">
+							<label for="rating3">3</label>
+							<input id="rating2" type="radio" name="rating" value="2">
+							<label for="rating2">2</label>
+							<input id="rating1" type="radio" name="rating" value="1">
+							<label for="rating1">1</label>
+						</span>
+					</div>
+					<div class="w3agile_description">
+						<h4>Description :</h4>
+						<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
+							officia deserunt mollit anim id est laborum.Duis aute irure dolor in 
+							reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
+							pariatur.</p>
+					</div>
+					<div class="snipcart-item block">
+						<div class="snipcart-thumb agileinfo_single_right_snipcart">
+							<h4 class="m-sing">$10.99<span>$35.00</span></h4>
+						</div>
+						<div class="snipcart-details agileinfo_single_right_details">
+							<form action="#" method="post">
+								<fieldset>
+									<input type="hidden" name="cmd" value="_cart">
+									<input type="hidden" name="add" value="1">
+									<input type="hidden" name="business" value=" ">
+									<input type="hidden" name="item_name" value="The C++ Programming Language Fourth">
+									<input type="hidden" name="amount" value="10.99">
+									<input type="hidden" name="discount_amount" value="1.00">
+									<input type="hidden" name="currency_code" value="USD">
+									<input type="hidden" name="return" value=" ">
+									<input type="hidden" name="cancel_return" value=" ">
+									<input type="submit" name="submit" value="Add to cart" class="button">
+								</fieldset>
+							</form>
+						</div>
 					</div>
 				</div>
-				<h6>Login information</h6>
-					<input type="email" placeholder="Email Address" required=" " name="email">
-					<input type="password" placeholder="Password" required=" " name="password">
-					<input type="password" placeholder="Password Confirmation" required=" " name="password-c">
-					<div class="register-check-box">
-
-							<label class="checkbox"><input type="checkbox" required><i> </i>I accept the terms and conditions</label>
-
-					</div>
-                             <?php  
-                             		$msg = $_SESSION['msg'];
-                             		$css_class = $_SESSION['css'];
-                              		if (!empty($msg)): 
-                              ?>
-                            		<div class="<?php echo $css_class;?>" style="text-align: center;">
-                            		  <?php echo $msg;?>
-                                
-                              </div>
-                          	<?php 
-                          			endif;
-                          			unset($_SESSION['msg']);
-                          			unset($_SESSION['css']); 
-                          	?>
-					<input type="submit" value="Register">
-				</form>
-			</div>
-
-
-			<div class="register-home">
-				<a href="index.php">Home</a>
+				<div class="clearfix"> </div>
 			</div>
 		</div>
 	</div>
-<!-- //register -->
+
 <!-- //footer -->
 <div class="footer">
 		<div class="container">
@@ -257,6 +233,7 @@
 			</div>
 		</div>
 		
+
 		
 	</div>	
 	<div class="footer-botm">
