@@ -17,8 +17,6 @@
         }
         $name = $data['First_Name'];   	
 ?>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -88,7 +86,7 @@
 				</ul>
 			</div>
 			<div class="w3ls_logo_products_left" style="margin: 10px;">
-				<h1><a href="index.php">Book Store</a></h1>
+				<h1><a href="home.php">Book Store</a></h1>
 			</div>
 		<div class="w3l_search">
 			<form action="#" method="post">
@@ -119,7 +117,7 @@
 							</div> 
 							<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 								<ul class="nav navbar-nav">
-									<li class="active"><a href="index.php" class="act">Home</a></li>	
+									<li class="active"><a href="home.php" class="act">Home</a></li>	
 									<!-- Mega Menu -->
 									<li class="dropdown">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Books<b class="caret"></b></a>

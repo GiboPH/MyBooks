@@ -15,7 +15,7 @@
 
             $data = mysqli_fetch_assoc($result);
             $_SESSION['id_user'] = $data['User_ID'];   
-            phpAlert("Welcome bubu");
+            //phpAlert("Welcome bubu");
 
             redirect("home.php");
         }
