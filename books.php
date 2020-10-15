@@ -75,9 +75,9 @@
 				<h1><a href="index.php">Book Store</a></h1>
 			</div>
 		<div class="w3l_search">
-			<form action="#" method="post">
+			<form action="search_conn.php" method="post">
 				<input type="search" name="Search" placeholder="Search for a Book..." required="">
-				<button type="submit" class="btn btn-default search" aria-label="Left Align">
+				<button type="submit" class="btn btn-default search" aria-label="Left Align" name="submit-search">
 					<i class="fa fa-search" aria-hidden="true"> </i>
 				</button>
 				<div class="clearfix"></div>
@@ -480,9 +480,8 @@
 				<div class="col-md-3 w3_footer_grid">
 					<h3>Information</h3>
 					<ul class="info"> 
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="about.php">About Us</a></li>
+	
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="contact.php">Contact Us</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="faq.php">FAQ's</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="books.php">Special Products</a></li>
 					</ul>
 				</div>
@@ -490,7 +489,6 @@
 					<h3>Profile</h3>
 					<ul class="info"> 
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="books.php">Store</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="checkout.php">My Cart</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="login.php">Login</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="registered.php">Create Account</a></li>
 					</ul>
@@ -654,9 +652,9 @@
 				<h1><a href="home.php">Book Store</a></h1>
 			</div>
 		<div class="w3l_search">
-			<form action="#" method="post">
+			<form action="search_conn.php" method="post">
 				<input type="search" name="Search" placeholder="Search for a Book..." required="">
-				<button type="submit" class="btn btn-default search" aria-label="Left Align">
+				<button type="submit" class="btn btn-default search" aria-label="Left Align" name="submit-search">
 					<i class="fa fa-search" aria-hidden="true"> </i>
 				</button>
 				<div class="clearfix"></div>
@@ -1053,9 +1051,7 @@
 				<div class="col-md-3 w3_footer_grid">
 					<h3>Information</h3>
 					<ul class="info"> 
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="about.php">About Us</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="contact.php">Contact Us</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="faq.php">FAQ's</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="books.php">Special Products</a></li>
 					</ul>
 				</div>
@@ -1063,9 +1059,8 @@
 					<h3>Profile</h3>
 					<ul class="info"> 
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="books.php">Store</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="checkout.php">My Cart</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="login.php">Login</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="registered.php">Create Account</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="logout_conn.php">Logout</a></li>
+
 					</ul>
 					
 					

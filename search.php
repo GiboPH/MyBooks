@@ -6,8 +6,8 @@
 
     if(!isset($_SESSION['id_user'])){
         //redirect("login.php");
-
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,6 +39,12 @@
 		});
 	});
 </script>
+<style type="text/css">
+	.pagesearch{
+		border: 1px black solid;
+		margin: 20px;
+	}
+</style>
 <!-- start-smoth-scrolling -->
 </head>
 	
@@ -53,10 +59,10 @@
 				<ul>
 					<li><a href="registered.php"> Create Account </a></li>
 					<li><a href="login.php">Login</a></li>
-
 					
 				</ul>
 			</div>
+
 
 
 			<div class="clearfix"> </div>
@@ -77,7 +83,7 @@
 		<div class="w3l_search">
 			<form action="#" method="post">
 				<input type="search" name="Search" placeholder="Search for a Book..." required="">
-				<button type="submit" class="btn btn-default search" aria-label="Left Align">
+				<button type="submit" class="btn btn-default search" aria-label="Left Align" name="submit-search">
 					<i class="fa fa-search" aria-hidden="true"> </i>
 				</button>
 				<div class="clearfix"></div>
@@ -139,58 +145,71 @@
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
 				<li><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
 				<li class="active">Books</li>
-				<li class="active">Searching</li>
+
 			</ol>
 		</div>
 	</div>
-	<!-- Single Book -->
+			<!-- Search Page -->										
 	<div class="products">
-		<div class="container">
+		<?php
+
+			if (!empty($_POST['Search'])) {
+					$search = $_POST['Search'];
+					$sql = "SELECT * FROM book_articles WHERE book_title LIKE '%$search%' OR book_details LIKE '%$search%'";
+					$result = mysqli_query($conn, $sql);
+					$queryResult = mysqli_num_rows($result);
+
+		?>
+
+		<div class="container" style="margin-bottom: 50px; text-decoration: underline; ">
+			<h3><?php echo "There are " . $queryResult. " results!"?></h3>
+		</div>
+
+		<?php
+			if ($queryResult > 0) {
+				while ($row = mysqli_fetch_assoc($result)) {
+
+
+			
+
+		?>
+
+
+		<div class="container" style="margin-bottom: 30px;">
+
 			<div class="agileinfo_single">
 				
 				<div class="col-md-4 agileinfo_single_left">
-					<img id="example" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS-d4bGT9eqLQ1bZKNqmKGa7KmdCX_x3MfoGfJrNI9ShXlFIC0" alt=" " class="img-responsive">
+					<a href="booksarticle.php"><img id="example" src="<?php echo $row['book_img']?>" alt=" " class="img-responsive"></a>
 				</div>
 				<div class="col-md-8 agileinfo_single_right">
-				<h2>The C++ Programming Language Fourth</h2>
-					<div class="rating1">
-						<span class="starRating">
-							<input id="rating5" type="radio" name="rating" value="5">
-							<label for="rating5">5</label>
-							<input id="rating4" type="radio" name="rating" value="4">
-							<label for="rating4">4</label>
-							<input id="rating3" type="radio" name="rating" value="3" checked="">
-							<label for="rating3">3</label>
-							<input id="rating2" type="radio" name="rating" value="2">
-							<label for="rating2">2</label>
-							<input id="rating1" type="radio" name="rating" value="1">
-							<label for="rating1">1</label>
-						</span>
-					</div>
-					<div class="w3agile_description">
-						<h4>Description :</h4>
-						<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
-							officia deserunt mollit anim id est laborum.Duis aute irure dolor in 
-							reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
-							pariatur.</p>
-					</div>
+				<h2><a href="booksarticle.php"><?php echo $row['book_title']?></h2></a>
+
 					<div class="snipcart-item block">
 						<div class="snipcart-thumb agileinfo_single_right_snipcart">
-							<h4 class="m-sing">$10.99<span>$35.00</span></h4>
+						
+							<h3 class="m-sing"><?php echo $row['book_price']?></h3>
+
 						</div>
+
+					<div class="w3agile_description">
+						<h4>Description :</h4>
+						<p style="text-align: justify;"><a href="booksarticle.php" style="color: grey;"><?php echo $row['book_details']?></a></p>
+					</div>
+
 						<div class="snipcart-details agileinfo_single_right_details">
 							<form action="#" method="post">
 								<fieldset>
 									<input type="hidden" name="cmd" value="_cart">
 									<input type="hidden" name="add" value="1">
 									<input type="hidden" name="business" value=" ">
-									<input type="hidden" name="item_name" value="The C++ Programming Language Fourth">
-									<input type="hidden" name="amount" value="10.99">
+									<input type="hidden" name="item_name" value="<?php echo $row['book_title']?>">
+									<input type="hidden" name="amount" value="<?php echo $row['book_price']?>">
 									<input type="hidden" name="discount_amount" value="1.00">
 									<input type="hidden" name="currency_code" value="USD">
 									<input type="hidden" name="return" value=" ">
 									<input type="hidden" name="cancel_return" value=" ">
-									<input type="submit" name="submit" value="Add to cart" class="button">
+
 								</fieldset>
 							</form>
 						</div>
@@ -199,7 +218,80 @@
 				<div class="clearfix"> </div>
 			</div>
 		</div>
+<?php
+			}
+		}
+	}
+	else if(!empty($_SESSION['X'])){
+		$search = $_SESSION['X'];
+		$sql = "SELECT * FROM book_articles WHERE book_title LIKE '%$search%' OR book_details LIKE '%$search%'";
+		unset($_SESSION['X']);
+		$result = mysqli_query($conn, $sql);
+		$queryResult = mysqli_num_rows($result);
+	
+?>
+		<div class="container" style="margin-bottom: 50px; text-decoration: underline; ">
+			<h3><?php echo "There are " . $queryResult. " results!"?></h3>
+		</div>
+
+<?php
+			if ($queryResult > 0) {
+				while ($row = mysqli_fetch_assoc($result)) {	
+?>
+		<div class="container" style="margin-bottom: 30px;">
+
+			<div class="agileinfo_single">
+				
+				<div class="col-md-4 agileinfo_single_left">
+					<a href="booksarticle.php"><img id="example" src="<?php echo $row['book_img']?>" alt=" " class="img-responsive"></a>
+				</div>
+				<div class="col-md-8 agileinfo_single_right">
+				<h2><a href="booksarticle.php"><?php echo $row['book_title']?></h2></a>
+
+					<div class="snipcart-item block">
+						<div class="snipcart-thumb agileinfo_single_right_snipcart">
+						
+							<h3 class="m-sing"><?php echo $row['book_price']?></h3>
+
+						</div>
+
+					<div class="w3agile_description">
+						<h4>Description :</h4>
+						<p style="text-align: justify;"><a href="booksarticle.php" style="color: grey;"><?php echo $row['book_details']?></a></p>
+					</div>
+
+						<div class="snipcart-details agileinfo_single_right_details">
+							<form action="#" method="post">
+								<fieldset>
+									<input type="hidden" name="cmd" value="_cart">
+									<input type="hidden" name="add" value="1">
+									<input type="hidden" name="business" value=" ">
+									<input type="hidden" name="item_name" value="<?php echo $row['book_title']?>">
+									<input type="hidden" name="amount" value="<?php echo $row['book_price']?>">
+									<input type="hidden" name="discount_amount" value="1.00">
+									<input type="hidden" name="currency_code" value="USD">
+									<input type="hidden" name="return" value=" ">
+									<input type="hidden" name="cancel_return" value=" ">
+
+								</fieldset>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+
+<?php
+			}
+		}
+	}
+?>
 	</div>
+
+
+
+
 
 <!-- //footer -->
 <div class="footer">
@@ -305,16 +397,16 @@
 </html>
 
 <?php
-    }    
-    else
-    {
+	}
+	else{
     	$id = $_SESSION['id_user'];
     	$query = "SELECT * FROM users where User_ID='$id';";
         $result = mysqli_query($conn, $query);
         if (mysqli_num_rows($result) > 0) {
            $data = mysqli_fetch_assoc($result);
         }
-        $name = $data['First_Name'];   	
+        $name = $data['First_Name'];   			
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -347,6 +439,12 @@
 		});
 	});
 </script>
+<style type="text/css">
+	.pagesearch{
+		border: 1px black solid;
+		margin: 20px;
+	}
+</style>
 <!-- start-smoth-scrolling -->
 </head>
 	
@@ -359,7 +457,7 @@
 			</div>
 			<div class="agile-login">
 				<ul>
-					<li><a href="registered.php"><?php echo $name?> </a></li>
+					<li><a href="#"><?php echo $name;?></a></li>
 					<li><a href="logout_conn.php">Logout</a></li>
 					<li><a href="contact.php">Help</a></li>
 					
@@ -385,12 +483,12 @@
 				</ul>
 			</div>
 			<div class="w3ls_logo_products_left">
-				<h1><a href="home.php">Book Store</a></h1>
+				<h1><a href="index.php">Book Store</a></h1>
 			</div>
 		<div class="w3l_search">
 			<form action="#" method="post">
 				<input type="search" name="Search" placeholder="Search for a Book..." required="">
-				<button type="submit" class="btn btn-default search" aria-label="Left Align">
+				<button type="submit" class="btn btn-default search" aria-label="Left Align" name="submit-search">
 					<i class="fa fa-search" aria-hidden="true"> </i>
 				</button>
 				<div class="clearfix"></div>
@@ -416,7 +514,7 @@
 							</div> 
 							<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 								<ul class="nav navbar-nav">
-									<li class="active"><a href="home.php" class="act">Home</a></li>	
+									<li class="active"><a href="index.php" class="act">Home</a></li>	
 									<!-- Mega Menu -->
 									<li class="dropdown">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Books<b class="caret"></b></a>
@@ -450,60 +548,73 @@
 	<div class="breadcrumbs">
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
-				<li><a href="home.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+				<li><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
 				<li class="active">Books</li>
-				<li class="active">Searching</li>
+
 			</ol>
 		</div>
 	</div>
-	<!-- Single Book -->
+			<!-- Search Page -->										
 	<div class="products">
-		<div class="container">
+		<?php
+
+			if (!empty($_POST['Search'])) {
+					$search = $_POST['Search'];
+					$sql = "SELECT * FROM book_articles WHERE book_title LIKE '%$search%' OR book_details LIKE '%$search%'";
+					$result = mysqli_query($conn, $sql);
+					$queryResult = mysqli_num_rows($result);
+
+		?>
+
+		<div class="container" style="margin-bottom: 50px; text-decoration: underline; ">
+			<h3><?php echo "There are " . $queryResult. " results!"?></h3>
+		</div>
+
+		<?php
+			if ($queryResult > 0) {
+				while ($row = mysqli_fetch_assoc($result)) {
+
+
+			
+
+		?>
+
+
+		<div class="container" style="margin-bottom: 30px;">
+
 			<div class="agileinfo_single">
 				
 				<div class="col-md-4 agileinfo_single_left">
-					<img id="example" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS-d4bGT9eqLQ1bZKNqmKGa7KmdCX_x3MfoGfJrNI9ShXlFIC0" alt=" " class="img-responsive">
+					<a href="booksarticle.php"><img id="example" src="<?php echo $row['book_img']?>" alt=" " class="img-responsive"></a>
 				</div>
 				<div class="col-md-8 agileinfo_single_right">
-				<h2>The C++ Programming Language Fourth</h2>
-					<div class="rating1">
-						<span class="starRating">
-							<input id="rating5" type="radio" name="rating" value="5">
-							<label for="rating5">5</label>
-							<input id="rating4" type="radio" name="rating" value="4">
-							<label for="rating4">4</label>
-							<input id="rating3" type="radio" name="rating" value="3" checked="">
-							<label for="rating3">3</label>
-							<input id="rating2" type="radio" name="rating" value="2">
-							<label for="rating2">2</label>
-							<input id="rating1" type="radio" name="rating" value="1">
-							<label for="rating1">1</label>
-						</span>
-					</div>
-					<div class="w3agile_description">
-						<h4>Description :</h4>
-						<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
-							officia deserunt mollit anim id est laborum.Duis aute irure dolor in 
-							reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
-							pariatur.</p>
-					</div>
+				<h2><a href="booksarticle.php"><?php echo $row['book_title']?></h2></a>
+
 					<div class="snipcart-item block">
 						<div class="snipcart-thumb agileinfo_single_right_snipcart">
-							<h4 class="m-sing">$10.99<span>$35.00</span></h4>
+						
+							<h3 class="m-sing"><?php echo $row['book_price']?></h3>
+
 						</div>
+
+					<div class="w3agile_description">
+						<h4>Description :</h4>
+						<p style="text-align: justify;"><a href="booksarticle.php" style="color: grey;"><?php echo $row['book_details']?></a></p>
+					</div>
+
 						<div class="snipcart-details agileinfo_single_right_details">
 							<form action="#" method="post">
 								<fieldset>
 									<input type="hidden" name="cmd" value="_cart">
 									<input type="hidden" name="add" value="1">
 									<input type="hidden" name="business" value=" ">
-									<input type="hidden" name="item_name" value="The C++ Programming Language Fourth">
-									<input type="hidden" name="amount" value="10.99">
+									<input type="hidden" name="item_name" value="<?php echo $row['book_title']?>">
+									<input type="hidden" name="amount" value="<?php echo $row['book_price']?>">
 									<input type="hidden" name="discount_amount" value="1.00">
 									<input type="hidden" name="currency_code" value="USD">
 									<input type="hidden" name="return" value=" ">
 									<input type="hidden" name="cancel_return" value=" ">
-									<input type="submit" name="submit" value="Add to cart" class="button">
+
 								</fieldset>
 							</form>
 						</div>
@@ -512,7 +623,80 @@
 				<div class="clearfix"> </div>
 			</div>
 		</div>
+<?php
+			}
+		}
+	}
+	else if(!empty($_SESSION['X'])){
+		$search = $_SESSION['X'];
+		$sql = "SELECT * FROM book_articles WHERE book_title LIKE '%$search%' OR book_details LIKE '%$search%'";
+		unset($_SESSION['X']);
+		$result = mysqli_query($conn, $sql);
+		$queryResult = mysqli_num_rows($result);
+	
+?>
+		<div class="container" style="margin-bottom: 50px; text-decoration: underline; ">
+			<h3><?php echo "There are " . $queryResult. " results!"?></h3>
+		</div>
+
+<?php
+			if ($queryResult > 0) {
+				while ($row = mysqli_fetch_assoc($result)) {	
+?>
+		<div class="container" style="margin-bottom: 30px;">
+
+			<div class="agileinfo_single">
+				
+				<div class="col-md-4 agileinfo_single_left">
+					<a href="booksarticle.php"><img id="example" src="<?php echo $row['book_img']?>" alt=" " class="img-responsive"></a>
+				</div>
+				<div class="col-md-8 agileinfo_single_right">
+				<h2><a href="booksarticle.php"><?php echo $row['book_title']?></h2></a>
+
+					<div class="snipcart-item block">
+						<div class="snipcart-thumb agileinfo_single_right_snipcart">
+						
+							<h3 class="m-sing"><?php echo $row['book_price']?></h3>
+
+						</div>
+
+					<div class="w3agile_description">
+						<h4>Description :</h4>
+						<p style="text-align: justify;"><a href="booksarticle.php" style="color: grey;"><?php echo $row['book_details']?></a></p>
+					</div>
+
+						<div class="snipcart-details agileinfo_single_right_details">
+							<form action="#" method="post">
+								<fieldset>
+									<input type="hidden" name="cmd" value="_cart">
+									<input type="hidden" name="add" value="1">
+									<input type="hidden" name="business" value=" ">
+									<input type="hidden" name="item_name" value="<?php echo $row['book_title']?>">
+									<input type="hidden" name="amount" value="<?php echo $row['book_price']?>">
+									<input type="hidden" name="discount_amount" value="1.00">
+									<input type="hidden" name="currency_code" value="USD">
+									<input type="hidden" name="return" value=" ">
+									<input type="hidden" name="cancel_return" value=" ">
+
+								</fieldset>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+
+<?php
+			}
+		}
+	}
+?>
 	</div>
+
+
+
+
 
 <!-- //footer -->
 <div class="footer">
@@ -617,8 +801,6 @@
 
 </body>
 </html>
-
-
 <?php
 	}
 ?>
